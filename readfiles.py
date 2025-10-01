@@ -9,6 +9,10 @@ headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/
 url = "https://analytics.wikimedia.org/published/datasets/country_project_page/"
 
 def get_dates() -> list[str]:
+    """
+    Visits the main webpages, which contains the list of all files names.
+    Extracts the date from each file name to create a list of all possible dates
+    """
     try:
         response = requests.get(url, headers=headers)
         response.raise_for_status()
@@ -21,6 +25,10 @@ def get_dates() -> list[str]:
         return []
 
 def top_1000(date: str) -> pd.DataFrame:
+    """
+    Retrieves the .tsv file for date given in the parameter
+    Converts files into Pandas Dataframe and collects top 1000 articles in the US
+    """
     try:
         response = requests.get(f"{url}/{date}", headers=headers)
         response.raise_for_status()
@@ -33,6 +41,9 @@ def top_1000(date: str) -> pd.DataFrame:
         return
 
 def process_date(date: str) -> None:
+    """
+    Retrieves data and inserts into database
+    """
     print(date)
     try:
         top = top_1000(date)
