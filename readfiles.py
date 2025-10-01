@@ -43,8 +43,8 @@ def process_date(date: str) -> None:
         print(e)
         return
 
-if __name__ == "__main__":
-    db.init_db()
-    dates = get_dates()
-    for date in dates:
-        process_date(date)
+# if __name__ == "__main__":
+    # db.init_db()
+    # dates = get_dates()
+    # for date in dates:
+    #     process_date(date)
