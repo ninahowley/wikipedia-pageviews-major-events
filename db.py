@@ -10,7 +10,6 @@ def init_db():
     cursor.execute('''
         CREATE TABLE IF NOT EXISTS pageviews (
             date TEXT,
-            country TEXT,
             search_id INTEGER,
             search_key TEXT,
             view_count INTEGER
@@ -22,7 +21,6 @@ def init_db():
 
 def insert_data(
     date: str,
-    country: str,
     search_id: int,
     search_key: str,
     view_count: int
@@ -31,9 +29,9 @@ def insert_data(
     cursor = conn.cursor()
     
     cursor.execute('''
-            INSERT INTO pageviews (date, country, search_id, search_key, view_count)
-            VALUES (?, ?, ?, ?, ?)
-        ''', (date, country, search_id, search_key, view_count))
+            INSERT INTO pageviews (date, search_id, search_key, view_count)
+            VALUES (?, ?, ?, ?)
+        ''', (date, search_id, search_key, view_count))
 
     conn.commit()
     conn.close()
