@@ -49,13 +49,13 @@ def process_date(date: str) -> None:
         top = top_1000(date)
         for _, r in top.iterrows():
             search_key = r[4].encode('latin1').decode('utf-8')
-            db.insert_data(date[:10], r[3], search_key, r[6])
+            db.insert_pageview_data(date[:10], r[3], search_key, r[6])
     except Exception as e:
         print(e)
         return
 
 # if __name__ == "__main__":
-    # db.init_db()
+    # db.init_pageviews()
     # dates = get_dates()
     # for date in dates:
     #     process_date(date)
