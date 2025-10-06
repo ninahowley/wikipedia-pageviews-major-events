@@ -3,6 +3,9 @@ from datetime import datetime
 from typing import List
 
 def init_pageviews():
+    """
+    Initialize pageviews table.
+    """
     conn = sqlite3.connect("raw_data.db")
     cursor = conn.cursor()
 
@@ -20,6 +23,9 @@ def init_pageviews():
     conn.close()
 
 def init_searchkeys():
+    """
+    Initialize searchkeys table.
+    """
     conn = sqlite3.connect("raw_data.db")
     cursor = conn.cursor()
 
@@ -35,11 +41,15 @@ def init_searchkeys():
     conn.close()
 
 def insert_pageview_data(
+        
     date: str,
     search_id: int,
     search_key: str,
     view_count: int
 ):
+    """
+    Insert rows into pageview table.
+    """
     conn = sqlite3.connect("raw_data.db")
     cursor = conn.cursor()
     
@@ -55,6 +65,9 @@ def insert_searchkey_nature(
     search_key: str,
     nature: str
 ):
+    """
+    Insert rows into searchkey table.
+    """
     conn = sqlite3.connect("raw_data.db")
     cursor = conn.cursor()
     
@@ -65,14 +78,3 @@ def insert_searchkey_nature(
 
     conn.commit()
     conn.close()
-
-# conn = sqlite3.connect("raw_data.db")
-# cursor = conn.cursor()
-
-# cursor.execute('''DROP TABLE IF EXISTS searchkeys''')
-# cursor.execute('''
-#     CREATE TABLE IF NOT EXISTS searchkeys (
-#         search_key TEXT,
-#         nature TEXT
-#     )
-# ''')
